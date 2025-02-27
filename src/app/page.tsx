@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import marbleImage from "./marble_blue_and_purple.jpg"; // Import image
+import marbleImage from "./marble.jpg"; // Import image
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
