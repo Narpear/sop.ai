@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import marbleImage from "../marble.jpg"; // Using the same marble background
 import { useRouter } from "next/navigation";
+import marbleImage from "../marble.jpg";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -18,7 +18,7 @@ export default function SignUpPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Sign up attempt with:", formData);
-    // Add your sign up logic here
+    // Add sign up logic here
     router.push("/tell-us-about-you");
   };
 

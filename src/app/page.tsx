@@ -2,22 +2,26 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import marbleImage from "./marble.jpg"; // Import image
+import { useRouter } from "next/navigation";
+import marbleImage from "./marble.jpg";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Login attempt with:", email, password);
+    // Add authentication logic here
+    router.push("/tell-us-about-you");
   };
 
   return (
     <div
       className="relative min-h-screen w-full flex items-center justify-center p-4 md:p-6"
       style={{
-        backgroundImage: `url(${marbleImage.src})`, // Use imported image dynamically
+        backgroundImage: `url(${marbleImage.src})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -27,7 +31,7 @@ export default function LoginPage() {
         <div className="mb-8 md:mb-0 text-center md:text-left md:max-w-md">
           <h1 className="text-[#606060] text-6xl md:text-8xl font-bold mb-6">sop.ai</h1>
           <p className="text-[#5a5a5a] text-lg md:text-xl max-w-md mx-auto md:mx-0">
-          Craft your perfect Statement of Purpose with AI assistance. Stand out in your graduate school applications with personalized, compelling narratives.
+            Craft your perfect Statement of Purpose with AI assistance. Stand out in your graduate school applications with personalized, compelling narratives.
           </p>
         </div>
 
