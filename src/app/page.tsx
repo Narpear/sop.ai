@@ -27,8 +27,7 @@ export default function LoginPage() {
         <div className="mb-8 md:mb-0 text-center md:text-left md:max-w-md">
           <h1 className="text-[#606060] text-6xl md:text-8xl font-bold mb-6">sop.ai</h1>
           <p className="text-[#5a5a5a] text-lg md:text-xl max-w-md mx-auto md:mx-0">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tortor lacus, pellentesque eget pretium id,
-            dignissim et lacus.
+          Craft your perfect Statement of Purpose with AI assistance. Stand out in your graduate school applications with personalized, compelling narratives.
           </p>
         </div>
 
@@ -73,7 +72,7 @@ export default function LoginPage() {
 
           <div className="mt-8 text-center text-[#606060]">
             Don't have an account?{" "}
-            <Link href="#" className="underline font-medium">
+            <Link href="/sign-up" className="underline font-medium">
               Get started!
             </Link>
           </div>
