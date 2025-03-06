@@ -43,7 +43,7 @@ export default function SignUpPage() {
         <div className="mb-8 md:mb-0 text-center md:text-left md:max-w-md">
           <h1 className="text-[#606060] text-6xl md:text-8xl font-bold mb-6">sop.ai</h1>
           <p className="text-[#5a5a5a] text-lg md:text-xl max-w-md mx-auto md:mx-0">
-            Join us to create your perfect Statement of Purpose. Let's begin your academic journey together.
+            Join us to create your perfect Statement of Purpose. Let&apos;s begin your academic journey together.
           </p>
         </div>
 
