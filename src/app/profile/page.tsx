@@ -13,13 +13,22 @@ export default function ProfilePage() {
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (typeof reader.result === 'string') {
-          setProfileImage(reader.result);
-        }
-      };
-      reader.readAsDataURL(file);
+      // Check for supported file types (e.g., image/jpeg, image/png)
+      if (!file.type.startsWith('image/')) {
+        alert('Please upload a valid image file.');
+        return;
+      }
+
+      // Check for file size (e.g., limit to 5MB)
+      const maxSizeInBytes = 5 * 1024 * 1024; // 5MB
+      if (file.size > maxSizeInBytes) {
+        alert('File size exceeds 5MB. Please upload a smaller image.');
+        return;
+      }
+
+      // Create a temporary URL for the uploaded image
+      const imageUrl = URL.createObjectURL(file);
+      setProfileImage(imageUrl);
     }
   };
 
