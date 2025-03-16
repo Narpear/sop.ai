@@ -100,28 +100,31 @@ export default function SOPTrackerPage() {
         />
       </div>
 
-      {/* Header with logo and profile button */}
-      <div className="absolute top-4 left-4 text-2xl font-bold text-white">
-        sop.ai
-      </div>
-      <div className="absolute top-4 right-4">
+      {/* Header with Tab Navigation */}
+      <div className="relative z-10 mt-6 px-8 flex items-center justify-between">
+        {/* Logo */}
+        <div className="text-2xl font-bold text-white">sop.ai</div>
+
+        {/* Tab Navigation */}
+        <div className="flex flex-1 justify-center space-x-4">
+          <div className="py-4 px-6 text-sop-gray-dark text-2xl font-medium cursor-pointer">
+            Explore SOPs
+          </div>
+          <div className="py-4 px-6 text-sop-gray-dark text-2xl font-medium bg-sop-active bg-opacity-70 rounded-lg cursor-pointer">
+            Your SOPs
+          </div>
+        </div>
+
+        {/* Profile Button */}
         <Button className="bg-[#8d77ff] text-white hover:bg-[#7a66e6]">
           Your Profile
         </Button>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mt-16">
-        {/* Tab Navigation */}
-        <div className="flex w-full mt-12">
-          <div className="w-1/2 py-6 text-center text-sop-gray-dark text-2xl font-medium">Explore SOPs</div>
-          <div className="w-1/2 py-6 text-center text-sop-gray-dark text-2xl font-medium bg-sop-active bg-opacity-70">
-            Your SOPs
-          </div>
-        </div>
-
+      <div className="relative z-10 mt-12 p-4">
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* College Cards */}
           {colleges.map((college) => (
             <div
