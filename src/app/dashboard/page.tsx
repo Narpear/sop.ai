@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import marbleImage from "../marble_swish.jpg";
-import { Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Image from "next/image"
