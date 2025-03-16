@@ -139,7 +139,7 @@ export default function TellUsAboutYouPage() {
           {/* Final Question */}
           <div>
             <label htmlFor="additional" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-              22. Anything else you'd like to share? (Random fun facts totally welcome!)
+              22. Anything else you&apos;d like to share? (Random fun facts totally welcome!)
             </label>
             <Textarea
               id="additional"
