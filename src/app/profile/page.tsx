@@ -2,13 +2,18 @@
 
 import { GraduationCap, Camera } from "lucide-react"
 import marbleImage from "../marble_profile.jpg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function ProfilePage() {
   const router = useRouter();
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    // Any client-side logic that depends on window or other client-only APIs
+  }, []);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -70,7 +75,12 @@ export default function ProfilePage() {
             />
             <div className="w-32 h-32 md:w-40 md:h-40 bg-sop-white rounded-full flex items-center justify-center shadow-md relative overflow-hidden">
               {profileImage ? (
-                <img src={profileImage} alt="Profile" className="w-full h-full rounded-full object-cover" />
+                <Image
+                  src={profileImage}
+                  alt="Profile"
+                  className="w-full h-full rounded-full object-cover"
+                  fill
+                />
               ) : (
                 <GraduationCap className="w-20 h-20 md:w-24 md:h-24 text-sop-text" strokeWidth={1.5} />
               )}
