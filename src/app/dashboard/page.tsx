@@ -101,7 +101,7 @@ export default function SOPTrackerPage() {
       </div>
 
       {/* Header with Tab Navigation - Responsive design */}
-      <header className="relative z-10 w-full bg-white bg-opacity-70 py-4 px-4 sm:px-6 shadow-sm">
+      <header className="relative z-10 w-full bg-white bg-opacity-07 py-4 px-4 sm:px-6 shadow-sm">
         <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Logo */}
           <div className="text-2xl font-bold text-gray-800">sop.ai</div>

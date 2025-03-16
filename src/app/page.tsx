@@ -14,7 +14,7 @@ export default function LoginPage() {
     e.preventDefault();
     console.log("Login attempt with:", email, password);
     // Add authentication logic here
-    router.push("/tell-us-about-you");
+    router.push("/dashboard");
   };
 
   return (
