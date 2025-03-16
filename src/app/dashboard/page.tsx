@@ -88,9 +88,9 @@ export default function SOPTrackerPage() {
   }
 
   return (
-    <div className="min-h-screen w-full relative">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+    <div className="flex flex-col min-h-screen w-full bg-gray-50">
+      {/* Background Image with proper positioning */}
+      <div className="fixed inset-0 z-0">
         <Image
           src={marbleImage}
           alt="Marble background"
@@ -100,66 +100,80 @@ export default function SOPTrackerPage() {
         />
       </div>
 
-      {/* Header with Tab Navigation */}
-      <div className="relative z-10 mt-6 px-8 flex items-center justify-between">
-        {/* Logo */}
-        <div className="text-2xl font-bold text-white">sop.ai</div>
+      {/* Header with Tab Navigation - Responsive design */}
+      <header className="relative z-10 w-full bg-white bg-opacity-70 py-4 px-4 sm:px-6 shadow-sm">
+        <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Logo */}
+          <div className="text-2xl font-bold text-gray-800">sop.ai</div>
 
-        {/* Tab Navigation */}
-        <div className="flex flex-1 justify-center space-x-4">
-          <div className="py-4 px-6 text-sop-gray-dark text-2xl font-medium cursor-pointer">
-            Explore SOPs
+          {/* Tab Navigation - Centered and responsive */}
+          <div className="flex space-x-2 sm:space-x-4 md:space-x-6">
+            <div className="py-2 px-3 sm:px-4 md:px-6 text-sop-gray-dark text-base sm:text-lg font-medium cursor-pointer hover:bg-gray-100 rounded-lg transition-colors">
+              Explore SOPs
+            </div>
+            <div className="py-2 px-3 sm:px-4 md:px-6 text-sop-gray-dark text-base sm:text-lg font-medium bg-sop-active bg-opacity-70 rounded-lg cursor-pointer transition-colors">
+              Your SOPs
+            </div>
           </div>
-          <div className="py-4 px-6 text-sop-gray-dark text-2xl font-medium bg-sop-active bg-opacity-70 rounded-lg cursor-pointer">
-            Your SOPs
-          </div>
+
+          {/* Profile Button */}
+          <Button className="bg-[#8d77ff] text-white hover:bg-[#7a66e6] w-full sm:w-auto">
+            Your Profile
+          </Button>
         </div>
+      </header>
 
-        {/* Profile Button */}
-        <Button className="bg-[#8d77ff] text-white hover:bg-[#7a66e6]">
-          Your Profile
-        </Button>
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 mt-12 p-4">
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* Main Content with proper spacing */}
+      <main className="relative z-10 flex-1 container mx-auto mt-6 sm:mt-8 px-4 pb-12">        
+        {/* Cards Grid with enhanced responsive layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6">
           {/* College Cards */}
           {colleges.map((college) => (
             <div
               key={college.id}
-              className="bg-white bg-opacity-50 rounded-3xl p-6 flex flex-col justify-between h-64 cursor-pointer shadow-lg transition-transform transform hover:scale-105"
+              className="bg-white rounded-2xl p-4 sm:p-6 flex flex-col justify-between h-56 sm:h-64 shadow-md hover:shadow-lg transition-all duration-300"
             >
-              <h2 className="text-[#606060] text-4xl font-semibold">{college.name}</h2>
-              <p
-                className={`text-2xl ${getStatusColor(college.progress)}`}
-                onClick={() => toggleStatus(college.id)}
-              >
-                {getStatusText(college.progress)}
-              </p>
-              <div className="mt-4">
-                <Link href={`/college/${college.id}`} className="px-4 py-2 bg-[#8d77ff] text-white rounded-full shadow-md hover:bg-[#7a66e6] transition-colors">
+              <h2 className="text-gray-700 text-xl sm:text-2xl font-semibold line-clamp-2">{college.name}</h2>
+              
+              <div className="mt-2">
+                <p
+                  className={`text-base sm:text-lg ${getStatusColor(college.progress)} font-medium cursor-pointer`}
+                  onClick={() => toggleStatus(college.id)}
+                >
+                  {getStatusText(college.progress)}
+                </p>
+              </div>
+              
+              <div className="mt-auto pt-4">
+                <Link 
+                  href={`/college/${college.id}`} 
+                  className="inline-block px-3 sm:px-4 py-2 bg-[#8d77ff] text-white rounded-full shadow-sm hover:bg-[#7a66e6] transition-colors text-sm sm:text-base"
+                >
                   View Details
                 </Link>
               </div>
             </div>
           ))}
 
-          {/* Add New College Input */}
-          <div className="bg-white bg-opacity-70 rounded-3xl flex flex-col items-center justify-center h-64 cursor-pointer shadow-lg transition-transform transform hover:scale-105 p-6">
+          {/* Add New College Card */}
+          <div className="bg-white rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center h-56 sm:h-64 shadow-md hover:shadow-lg transition-all duration-300">
+            <h3 className="text-lg sm:text-xl font-medium text-gray-600 mb-3 sm:mb-4">Add New College</h3>
             <Input
               placeholder="Enter college name"
               value={newCollegeName}
               onChange={(e) => setNewCollegeName(e.target.value)}
-              className="mb-4"
+              className="mb-3 sm:mb-4 w-full"
             />
-            <Button onClick={addCollege} className="w-full">
+            <Button 
+              onClick={addCollege} 
+              className="w-full bg-[#8d77ff] hover:bg-[#7a66e6]"
+              disabled={!newCollegeName.trim()}
+            >
               + Add College
             </Button>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   )
 }
