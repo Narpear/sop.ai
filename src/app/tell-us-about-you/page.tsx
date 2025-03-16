@@ -24,6 +24,66 @@ export default function TellUsAboutYouPage() {
     router.push("/dashboard")
   }
 
+  // Define sections and questions
+  const sections = [
+    {
+      title: "About You",
+      questions: [
+        { id: "fullName", label: "1. What is your full name? What do you like to be called?", type: "input" },
+        { id: "location", label: "2. Where are you from?", type: "input" },
+        { id: "education", label: "3. What's your educational background?", type: "textarea" },
+        { id: "achievements", label: "4. Any cool academic achievements you're proud of?", type: "textarea" },
+      ],
+    },
+    {
+      title: "Your Interests & Goals",
+      questions: [
+        { id: "subjects", label: "5. What subjects or fields excite you the most? Why?", type: "textarea" },
+        { id: "futureGoals", label: "6. What do you see yourself doing in the future?", type: "textarea" },
+        { id: "impact", label: "7. If you could make an impact in your field or community, what would it be?", type: "textarea" },
+      ],
+    },
+    {
+      title: "Projects, Work & Experience",
+      questions: [
+        { id: "projects", label: "8. Have you worked on any interesting projects or research? What was it about?", type: "textarea" },
+        { id: "workExperience", label: "9. Any internships, jobs, or volunteer work? What did you do, and what did you learn?", type: "textarea" },
+      ],
+    },
+    {
+      title: "Beyond Academics",
+      questions: [
+        { id: "hobbies", label: "10. What do you do for fun outside of studies?", type: "textarea" },
+        { id: "leadership", label: "11. Have you taken on any leadership roles? What was that experience like?", type: "textarea" },
+        { id: "competitions", label: "12. Any competitions or events you've participated in that meant something to you?", type: "textarea" },
+      ],
+    },
+    {
+      title: "Life Experiences & Personal Growth",
+      questions: [
+        { id: "challenges", label: "13. Have you faced any big challenges or setbacks? How did you deal with them?", type: "textarea" },
+        { id: "values", label: "14. What values or beliefs are really important to you?", type: "textarea" },
+        { id: "uniqueTraits", label: "15. What's something unique or unexpected about you that people might not know?", type: "textarea" },
+      ],
+    },
+    {
+      title: "Family & Inspirations",
+      questions: [
+        { id: "family", label: "16. Can you tell me a little about your family?", type: "textarea" },
+        { id: "familyInfluence", label: "17. Has your family influenced your academic or career choices in any way?", type: "textarea" },
+        { id: "inspiration", label: "18. Is there a family member who inspires you? What have you learned from them?", type: "textarea" },
+        { id: "traditions", label: "19. Do you have any special family traditions or experiences that shaped who you are today?", type: "textarea" },
+      ],
+    },
+    {
+      title: "Other Details",
+      questions: [
+        { id: "colleges", label: "20. Which colleges/universities are you most interested in? Why?", type: "textarea" },
+        { id: "goodFit", label: "21. Why do you think you'd be a great fit for them?", type: "textarea" },
+      ],
+    },
+  ];
+
   return (
     <div 
       className="min-h-screen bg-gradient-sop p-4 md:p-8 relative overflow-auto"
@@ -47,305 +107,39 @@ export default function TellUsAboutYouPage() {
           </p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-12">
-          {/* About You Section */}
-          <section>
-            <h2 className="text-2xl md:text-3xl font-semibold text-sop-gray-dark mb-6">About You</h2>
-            <div className="space-y-6">
-              <div>
-                <label htmlFor="fullName" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  1. What is your full name? What do you like to be called?
-                </label>
-                <Input
-                  id="fullName"
-                  name="fullName"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
+          {sections.map((section, index) => (
+            <section key={index}>
+              <h2 className="text-2xl md:text-3xl font-semibold text-sop-gray-dark mb-6">{section.title}</h2>
+              <div className="space-y-6">
+                {section.questions.map((question) => (
+                  <div key={question.id}>
+                    <label htmlFor={question.id} className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
+                      {question.label}
+                    </label>
+                    {question.type === "input" ? (
+                      <Input
+                        id={question.id}
+                        name={question.id}
+                        onChange={handleChange}
+                        className="w-full bg-white border-sop-pink"
+                      />
+                    ) : (
+                      <Textarea
+                        id={question.id}
+                        name={question.id}
+                        onChange={handleChange}
+                        className="w-full bg-white border-sop-pink"
+                      />
+                    )}
+                  </div>
+                ))}
               </div>
-
-              <div>
-                <label htmlFor="location" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  2. Where are you from?
-                </label>
-                <Input
-                  id="location"
-                  name="location"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="education" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  3. What&apos;s your educational background? (Schools/colleges you&apos;ve attended, major subjects,
-                  favorite classes, etc.)
-                </label>
-                <Textarea
-                  id="education"
-                  name="education"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="achievements" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  4. Any cool academic achievements you&apos;re proud of? (Top grades, awards, scholarships, research,
-                  etc.)
-                </label>
-                <Textarea
-                  id="achievements"
-                  name="achievements"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* Your Interests & Goals Section */}
-          <section>
-            <h2 className="text-2xl md:text-3xl font-semibold text-sop-gray-dark mb-6">Your Interests & Goals</h2>
-            <div className="space-y-6">
-              <div>
-                <label htmlFor="subjects" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  5. What subjects or fields excite you the most? Why?
-                </label>
-                <Textarea
-                  id="subjects"
-                  name="subjects"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="futureGoals" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  6. What do you see yourself doing in the future? (Short-term goals in the next 5 years, long-term
-                  dreams for 10-20 years down the line.)
-                </label>
-                <Textarea
-                  id="futureGoals"
-                  name="futureGoals"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="impact" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  7. If you could make an impact in your field or community, what would it be?
-                </label>
-                <Textarea
-                  id="impact"
-                  name="impact"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-            </div>
-          </section>
-                    {/* Projects, Work & Experience Section */}
-                    <section>
-            <h2 className="text-2xl md:text-3xl font-semibold text-sop-gray-dark mb-6">Projects, Work & Experience</h2>
-            <div className="space-y-6">
-              <div>
-                <label htmlFor="projects" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  8. Have you worked on any interesting projects or research? What was it about?
-                </label>
-                <Textarea
-                  id="projects"
-                  name="projects"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="workExperience" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  9. Any internships, jobs, or volunteer work? What did you do, and what did you learn?
-                </label>
-                <Textarea
-                  id="workExperience"
-                  name="workExperience"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* Beyond Academics Section */}
-          <section>
-            <h2 className="text-2xl md:text-3xl font-semibold text-sop-gray-dark mb-6">Beyond Academics</h2>
-            <div className="space-y-6">
-              <div>
-                <label htmlFor="hobbies" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  10. What do you do for fun outside of studies? (hobbies, clubs, sports, music, gaming, anything!)
-                </label>
-                <Textarea
-                  id="hobbies"
-                  name="hobbies"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="leadership" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  11. Have you taken on any leadership roles (club leader, event organizer, team captain)? What was that
-                  experience like?
-                </label>
-                <Textarea
-                  id="leadership"
-                  name="leadership"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="competitions" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  12. Any competitions or events you&apos;ve participated in that meant something to you?
-                </label>
-                <Textarea
-                  id="competitions"
-                  name="competitions"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-            </div>
-          </section>
-                    {/* Life Experiences & Personal Growth Section */}
-                    <section>
-            <h2 className="text-2xl md:text-3xl font-semibold text-sop-gray-dark mb-6">Life Experiences & Personal Growth</h2>
-            <div className="space-y-6">
-              <div>
-                <label htmlFor="challenges" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  13. Have you faced any big challenges or setbacks? How did you deal with them?
-                </label>
-                <Textarea
-                  id="challenges"
-                  name="challenges"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="values" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  14. What values or beliefs are really important to you?
-                </label>
-                <Textarea
-                  id="values"
-                  name="values"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="uniqueTraits" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  15. What&apos;s something unique or unexpected about you that people might not know?
-                </label>
-                <Textarea
-                  id="uniqueTraits"
-                  name="uniqueTraits"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* Family & Inspirations Section */}
-          <section>
-            <h2 className="text-2xl md:text-3xl font-semibold text-sop-gray-dark mb-6">Family & Inspirations</h2>
-            <div className="space-y-6">
-              <div>
-                <label htmlFor="family" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  16. Can you tell me a little about your family? (Who you live with, any siblings, etc.)
-                </label>
-                <Textarea
-                  id="family"
-                  name="family"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="familyInfluence" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  17. Has your family influenced your academic or career choices in any way?
-                </label>
-                <Textarea
-                  id="familyInfluence"
-                  name="familyInfluence"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="inspiration" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  18. Is there a family member who inspires you? What have you learned from them?
-                </label>
-                <Textarea
-                  id="inspiration"
-                  name="inspiration"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="traditions" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  19. Do you have any special family traditions or experiences that shaped who you are today?
-                </label>
-                <Textarea
-                  id="traditions"
-                  name="traditions"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-            </div>
-          </section>
-                    {/* Other Details Section */}
-                    <section>
-            <h2 className="text-2xl md:text-3xl font-semibold text-sop-gray-dark mb-6">Other Details</h2>
-            <div className="space-y-6">
-              <div>
-                <label htmlFor="colleges" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  20. Which colleges/universities are you most interested in? Why?
-                </label>
-                <Textarea
-                  id="colleges"
-                  name="colleges"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="goodFit" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-                  21. Why do you think you&apos;d be a great fit for them?
-                </label>
-                <Textarea
-                  id="goodFit"
-                  name="goodFit"
-                  onChange={handleChange}
-                  className="w-full bg-white border-sop-pink"
-                />
-              </div>
-            </div>
-          </section>
-
+            </section>
+          ))}
           {/* Final Question */}
           <div>
             <label htmlFor="additional" className="block text-lg md:text-xl font-bold text-sop-gray-dark mb-2">
-              22. Anything else you&apos;d like to share? (Random fun facts totally welcome!)
+              22. Anything else you'd like to share? (Random fun facts totally welcome!)
             </label>
             <Textarea
               id="additional"

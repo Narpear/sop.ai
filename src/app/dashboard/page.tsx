@@ -95,13 +95,13 @@ export default function SOPTrackerPage() {
           src={marbleImage}
           alt="Marble background"
           fill
-          className="object-cover opacity-50"
+          className="object-cover"
           priority
         />
       </div>
 
       {/* Header with Tab Navigation - Responsive design */}
-      <header className="relative z-10 w-full bg-white bg-opacity-07 py-4 px-4 sm:px-6 shadow-sm">
+      <header className="relative z-10 w-full bg-white bg-opacity-70 py-4 px-4 sm:px-6 shadow-sm">
         <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Logo */}
           <div className="text-2xl font-bold text-gray-800">sop.ai</div>
@@ -117,9 +117,11 @@ export default function SOPTrackerPage() {
           </div>
 
           {/* Profile Button */}
-          <Button className="bg-[#8d77ff] text-white hover:bg-[#7a66e6] w-full sm:w-auto">
-            Your Profile
-          </Button>
+          <Link href="/profile">
+            <Button className="bg-[#8d77ff] text-white hover:bg-[#7a66e6] w-full sm:w-auto">
+              Your Profile
+            </Button>
+          </Link>
         </div>
       </header>
 
